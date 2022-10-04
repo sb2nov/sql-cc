@@ -1,21 +1,20 @@
-# sql-cc
+# SQL Crash Course package
+Run an SQL query for the "SQL Crash Course" using sqlcc.
 
+
+## Install
 You can install the package by running:
 
 ```
 pip install git+https://github.com/sb2nov/sqlcc
 ```
 
-Download the Sqlite db locally:
-
-```
-!wget <Link to be added>
-```
-
 Then you can run a SQL query like:
 
 ```Python
-from sqlcc.run import sql_query
+from sqlcc import run
 
-sql_query(SQL_QUERY)
+run(SQL_QUERY)
 ```
+
+The database and its content is locally constructed from the data contained in this package.
