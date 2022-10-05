@@ -39,7 +39,7 @@ def __init():
     """
     if "SQLITE_DB_HASH" in os.environ:
         if os.path.isfile(SQLITE_URL):
-            hash = __calculate_file_hash()
+            hash = __calculate_file_hash(SQLITE_URL)
 
             if hash != os.environ["SQLITE_DB_HASH"]:
                 # Delete db
@@ -60,8 +60,7 @@ def __init():
         __create_db(DATA_FOLDER_URL, DB_SCHEMA_URL, SQLITE_URL, CSV_FILES_URL)
 
         # Set hash to env variable
-        os.environ["SQLITE_DB_HASH"] = __calculate_file_hash(
-            "airbnb_sydney.sqlite")
+        os.environ["SQLITE_DB_HASH"] = __calculate_file_hash(SQLITE_URL)
 
 
 def __calculate_file_hash(file_url: str) -> str:
