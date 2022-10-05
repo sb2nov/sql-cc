@@ -81,7 +81,7 @@ def __calculate_file_hash(file_url: str) -> str:
     return blake2b.hexdigest()
 
 
-def __create_db(data_folder: str, db_schema_url: str, sqlite_url: str, csv_files_url: list[str]):
+def __create_db(data_folder: str, db_schema_url: str, sqlite_url: str, csv_files_url: list):
     """
     (Re-)create the database from scratch using SQL and CSV scripts.
     """
