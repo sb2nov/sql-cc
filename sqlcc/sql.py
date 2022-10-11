@@ -45,10 +45,17 @@ def check(**key_user_sql_query):
                 sql_sol_df = run(sql_sol_dict[key])
                 current_sql_df = run(user_sql_query)
                 
-                if sql_sol_df.equals(current_sql_df):
-                    print("Your SQL query is correct!")
+                # First check if contains the same columns
+                if sorted(sql_sol_df.columns.tolist()) != sorted(current_sql_df.columns.tolist()):
+                    print("Your SQL query does NOT match our solution. There is a mismatch in columns.")
                 else:
-                    print("Your SQL query does NOT match our solution.")
+                    # Ensure the columns of both dataframes are in the same order
+                    sql_sol_df = sql_sol_df[current_sql_df.columns.tolist()]
+                    
+                    if sql_sol_df.equals(current_sql_df):
+                        print("Your SQL query is correct!")
+                    else:
+                        print("Your SQL query does NOT match our solution. The number of rows is different.")
             else:
                 raise QuestionKeyUnknown
         except QuestionKeyUnknown:
