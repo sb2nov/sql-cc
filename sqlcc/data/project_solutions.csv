@@ -12,3 +12,20 @@ q1_2_6;SELECT * FROM calendar WHERE listing_id = 7581665 AND date BETWEEN '2022-
 q1_2_7a;SELECT * FROM calendar WHERE listing_id = 657377039990074158
 q1_2_7b;SELECT * FROM reviews WHERE listing_id = 657377039990074158
 q1_2_7c;SELECT * FROM listings WHERE listing_id = 657377039990074158
+q2_1_1;SELECT * FROM neighbourhoods
+q2_2_1;SELECT * FROM listings WHERE host LIKE 'Jos%'
+q2_2_2a;SELECT * FROM neighbourhoods WHERE neighbourhood_id = 21
+q2_2_2b;SELECT * FROM calendar WHERE listing_id = 22296011
+q2_2_2c;SELECT * FROM reviews WHERE listing_id = 22296011
+q2_3_1a;SELECT AVG(price_in_dollar) FROM listings
+q2_3_1b;SELECT MAX(price_in_dollar) FROM listings
+q2_3_1c;SELECT MIN(price_in_dollar) FROM listings
+q2_4_1;SELECT neighbourhood_id, COUNT(neighbourhood_id) FROM listings GROUP BY neighbourhood_id
+q2_4_2;SELECT neighbourhood_id, COUNT(neighbourhood_id) FROM listings GROUP BY neighbourhood_id ORDER BY COUNT(neighbourhood_id) DESC
+q2_4_3a;SELECT neighbourhood_id FROM listings
+q2_4_3b;SELECT neighbourhood_id FROM neighbourhoods
+q2_4_3c;SELECT neighbourhood_id FROM neighbourhoods WHERE neighbourhood_id NOT IN (SELECT neighbourhood_id FROM listings)
+q2_5_1a;SELECT neighbourhood_id, COUNT(neighbourhood_id) FROM listings GROUP BY neighbourhood_id
+q2_5_1b;SELECT neighbourhood_id, COUNT(neighbourhood_id) FROM listings GROUP BY neighbourhood_id HAVING COUNT(neighbourhood_id) > 4
+q2_5_2;SELECT neighbourhood FROM neighbourhoods WHERE neighbourhood_id IN (SELECT neighbourhood_id FROM listings GROUP BY neighbourhood_id HAVING COUNT(neighbourhood_id) > 4)
+q2_6_1;SELECT listing, listing_id, host, host_id, CASE WHEN price_in_dollar < 70 THEN 'Affordable' WHEN price_in_dollar > 300 THEN 'Expensive' ELSE 'Mid-range' END price_range FROM listings
