@@ -12,9 +12,13 @@ pip install git+https://github.com/sb2nov/sql-cc.git
 Then you can run a SQL query like:
 
 ```Python
-from sqlcc import run
+from sqlcc import run, check
 
-run(SQL_QUERY)
+### Question: q1_1_1
+query = "SELECT * FROM listings"
+
+run(query)
+check(q1_1_1 = query)
 ```
 
 The database and its content is locally constructed from the data contained in this package.
