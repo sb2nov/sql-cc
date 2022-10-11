@@ -10,6 +10,7 @@ DB_SCHEMA_URL = "db_creation_script.sql"
 SQLITE_URL = "airbnb_sydney.sqlite"
 CSV_FILES_URL = ["sql_neighbourhoods.csv", "sql_listings.csv",
                  "sql_calendar.csv", "sql_reviews.csv"]
+SOLUTION_CSV = "project_solutions.csv"
 
 
 def run(sql_query: str) -> pd.DataFrame:
@@ -31,6 +32,38 @@ def run(sql_query: str) -> pd.DataFrame:
 
     # Return the output as Pandas dataframe
     return dataframe
+
+
+def check(**key_user_sql_query):
+    sql_solutions = pd.read_csv(StringIO(pkgutil.get_data(
+            __name__, DATA_FOLDER_URL + SOLUTION_CSV).decode("utf-8")), sep=";", header=0)
+    sql_sol_dict = dict(zip(sql_solutions.key, sql_solutions.value))
+
+    for key, user_sql_query in key_user_sql_query.items():
+        try: 
+            if key in sql_sol_dict:
+                sql_sol_df = run(sql_sol_dict[key])
+                current_sql_df = run(user_sql_query)
+                
+                if sql_sol_df.equals(current_sql_df):
+                    print("Your SQL query is correct!")
+                else:
+                    print("Your SQL query does NOT match our solution.")
+            else:
+                raise QuestionKeyUnknown
+        except QuestionKeyUnknown:
+            print("The variable name used for the parameter" +
+                  " in the check function does not match" + 
+                  " any of our solution keys.")
+            
+
+class QuestionKeyUnknown(Exception):
+    """
+    Raised when the variable name does not match
+    any of the keys we've defined for our question-
+    solution pairs.
+    """
+    pass
 
 
 def __init():

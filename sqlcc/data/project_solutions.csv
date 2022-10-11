@@ -1,0 +1,14 @@
+key;value
+q1_1_1;SELECT * FROM listings
+q1_1_2a;SELECT * FROM neighbourhoods
+q1_1_2b;SELECT * FROM reviews
+q1_1_2c;SELECT * FROM calendar
+q1_2_1;SELECT host_id, host FROM listings
+q1_2_2;SELECT host_id, host FROM listings ORDER BY host_id DESC
+q1_2_3;SELECT host_id, host FROM listings WHERE neighbourhood_id = 35 ORDER BY host_id DESC
+q1_2_4;SELECT host_id, host FROM listings WHERE neighbourhood_id = 27 AND room_type = 'Private room' ORDER BY host_id DESC
+q1_2_5;SELECT * FROM calendar WHERE date BETWEEN '2022-09-09' AND '2022-09-11'
+q1_2_6;SELECT * FROM calendar WHERE listing_id = 7581665 AND date BETWEEN '2022-09-09' AND '2022-09-11'
+q1_2_7a;SELECT * FROM calendar WHERE listing_id = 657377039990074158
+q1_2_7b;SELECT * FROM reviews WHERE listing_id = 657377039990074158
+q1_2_7c;SELECT * FROM listings WHERE listing_id = 657377039990074158
