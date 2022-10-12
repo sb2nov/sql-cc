@@ -35,6 +35,7 @@ def run(sql_query: str) -> pd.DataFrame:
 
 
 def check(**key_user_sql_query):
+    print("-------------------")
     sql_solutions = pd.read_csv(StringIO(pkgutil.get_data(
             __name__, DATA_FOLDER_URL + SOLUTION_CSV).decode("utf-8")), sep=";", header=0)
     sql_sol_dict = dict(zip(sql_solutions.key, sql_solutions.value))
