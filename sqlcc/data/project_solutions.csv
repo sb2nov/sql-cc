@@ -29,3 +29,7 @@ q2_5_1a;SELECT neighbourhood_id, COUNT(neighbourhood_id) FROM listings GROUP BY 
 q2_5_1b;SELECT neighbourhood_id, COUNT(neighbourhood_id) FROM listings GROUP BY neighbourhood_id HAVING COUNT(neighbourhood_id) > 4
 q2_5_2;SELECT neighbourhood FROM neighbourhoods WHERE neighbourhood_id IN (SELECT neighbourhood_id FROM listings GROUP BY neighbourhood_id HAVING COUNT(neighbourhood_id) > 4)
 q2_6_1;SELECT listing, listing_id, host, host_id, CASE WHEN price_in_dollar < 70 THEN 'Affordable' WHEN price_in_dollar > 300 THEN 'Expensive' ELSE 'Mid-range' END price_range FROM listings
+q1_2_8a;SELECT * FROM listings WHERE neighbourhood_id IN (21, 28, 4)
+q1_2_8b;SELECT * FROM listings WHERE neighbourhood_id IN (1, 26 , 37) ORDER BY price_in_dollar
+q1_2_9a;SELECT available FROM calendar WHERE listing_id IN (22296011, 8476652, 28268415, 40426054) 
+q1_2_9b;SELECT available FROM calendar WHERE listing_id IN (658279799851154919, 10549608, 41983356, 44284905, 2033151, 34027782, 46159786, 9376988, 10111788) 
