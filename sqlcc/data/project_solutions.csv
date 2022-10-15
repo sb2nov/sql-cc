@@ -36,3 +36,7 @@ q1_2_9b;SELECT available FROM calendar WHERE listing_id IN (658279799851154919, 
 q1_2_10a;SELECT * FROM listings WHERE price_in_dollar >= 400 ORDER BY price_in_dollar
 q1_2_10b;SELECT * FROM listings WHERE neighbourhood_id IN (20, 26) AND price_in_dollar >= 400 ORDER BY price_in_dollar
 q1_2_10c;SELECT * FROM reviews WHERE listing_id IN (21443493, 10729688, 9012529, 46159786, 9376988) ORDER BY listing_id
+q2_7_1a;SELECT * FROM listings WHERE price_in_dollar >= 70 AND price_in_dollar <= 100
+q2_7_1b;SELECT * FROM calendar WHERE listing_id IN (SELECT listing_id FROM listings WHERE price_in_dollar >= 70 AND price_in_dollar <= 100)
+q2_7_1c;SELECT COUNT(available) FROM calendar WHERE listing_id IN (SELECT listing_id FROM listings WHERE price_in_dollar >= 70 AND price_in_dollar <= 100)
+q2_7_1d;SELECT SUM(available) FROM calendar WHERE listing_id IN (SELECT listing_id FROM listings WHERE price_in_dollar >= 70 AND price_in_dollar <= 100)
