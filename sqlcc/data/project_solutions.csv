@@ -31,8 +31,8 @@ q2_5_2;SELECT neighbourhood FROM neighbourhoods WHERE neighbourhood_id IN (SELEC
 q2_6_1;SELECT listing, listing_id, host, host_id, CASE WHEN price_in_dollar < 70 THEN 'Affordable' WHEN price_in_dollar > 300 THEN 'Expensive' ELSE 'Mid-range' END price_range FROM listings
 q1_2_8a;SELECT * FROM listings WHERE neighbourhood_id IN (21, 28, 4)
 q1_2_8b;SELECT * FROM listings WHERE neighbourhood_id IN (1, 26 , 37) ORDER BY price_in_dollar
-q1_2_9a;SELECT available FROM calendar WHERE listing_id IN (22296011, 8476652, 28268415, 40426054) 
-q1_2_9b;SELECT available FROM calendar WHERE listing_id IN (658279799851154919, 10549608, 41983356, 44284905, 2033151, 34027782, 46159786, 9376988, 10111788)
+q1_2_9a;SELECT * FROM calendar WHERE listing_id IN (22296011, 8476652, 28268415, 40426054) 
+q1_2_9b;SELECT * FROM calendar WHERE listing_id IN (658279799851154919, 10549608, 41983356, 44284905, 2033151, 34027782, 46159786, 9376988, 10111788)
 q1_2_10a;SELECT * FROM listings WHERE price_in_dollar >= 400 ORDER BY price_in_dollar
 q1_2_10b;SELECT * FROM listings WHERE neighbourhood_id IN (20, 26) AND price_in_dollar >= 400 ORDER BY price_in_dollar
 q1_2_10c;SELECT * FROM reviews WHERE listing_id IN (21443493, 10729688, 9012529, 46159786, 9376988) ORDER BY listing_id
