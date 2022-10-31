@@ -43,12 +43,16 @@ def check(**key_user_sql_query):
     for key, user_sql_query in key_user_sql_query.items():
         try: 
             if key in sql_sol_dict:
-                sql_sol_df = run(sql_sol_dict[key])
-                current_sql_df = run(user_sql_query)
+                sql_sol_df = run(sql_sol_dict[key].lower())
+                current_sql_df = run(user_sql_query.lower())
                 
                 # First check if contains the same columns
                 if sorted(sql_sol_df.columns.tolist()) != sorted(current_sql_df.columns.tolist()):
-                    print("Your SQL query does NOT match our solution. There is a mismatch in columns.")
+                    print("Your SQL query does NOT match our solution. There is a column mismatch:" +
+                          "\n" +
+                          "\nYou have:\t" + str(sorted(current_sql_df.columns.tolist())) + 
+                          "\nExpected:\t" + str(sorted(sql_sol_df.columns.tolist())) +
+                          "\n-------------------")
                 else:
                     # Ensure the columns of both dataframes are in the same order
                     sql_sol_df = sql_sol_df[current_sql_df.columns.tolist()]
