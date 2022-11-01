@@ -1,42 +1,42 @@
 key;value
-q1_1_1;SELECT * FROM listings
-q1_1_2a;SELECT * FROM neighbourhoods
-q1_1_2b;SELECT * FROM reviews
-q1_1_2c;SELECT * FROM calendar
-q1_2_1;SELECT host_id, host FROM listings
-q1_2_2;SELECT host_id, host FROM listings ORDER BY host_id DESC
-q1_2_3;SELECT host_id, host FROM listings WHERE neighbourhood_id = 35 ORDER BY host_id DESC
-q1_2_4;SELECT host_id, host FROM listings WHERE neighbourhood_id = 27 AND room_type = 'Private room' ORDER BY host_id DESC
-q1_2_5;SELECT * FROM calendar WHERE date BETWEEN '2022-09-09' AND '2022-09-11'
-q1_2_6;SELECT * FROM calendar WHERE listing_id = 7581665 AND date BETWEEN '2022-09-09' AND '2022-09-11'
-q1_2_7a;SELECT * FROM calendar WHERE listing_id = 657377039990074158
-q1_2_7b;SELECT * FROM reviews WHERE listing_id = 657377039990074158
-q1_2_7c;SELECT * FROM listings WHERE listing_id = 657377039990074158
-q2_1_1;SELECT * FROM neighbourhoods
-q2_2_1;SELECT * FROM listings WHERE host LIKE 'Jos%'
-q2_2_2a;SELECT * FROM neighbourhoods WHERE neighbourhood_id = 21
-q2_2_2b;SELECT * FROM calendar WHERE listing_id = 22296011
-q2_2_2c;SELECT * FROM reviews WHERE listing_id = 22296011
-q2_3_1a;SELECT AVG(price_in_dollar) FROM listings
-q2_3_1b;SELECT MAX(price_in_dollar) FROM listings
-q2_3_1c;SELECT MIN(price_in_dollar) FROM listings
-q2_4_1;SELECT neighbourhood_id, COUNT(neighbourhood_id) FROM listings GROUP BY neighbourhood_id
-q2_4_2;SELECT neighbourhood_id, COUNT(neighbourhood_id) FROM listings GROUP BY neighbourhood_id ORDER BY COUNT(neighbourhood_id) DESC
-q2_4_3a;SELECT neighbourhood_id FROM listings
-q2_4_3b;SELECT neighbourhood_id FROM neighbourhoods
-q2_4_3c;SELECT neighbourhood_id FROM neighbourhoods WHERE neighbourhood_id NOT IN (SELECT neighbourhood_id FROM listings)
-q2_5_1a;SELECT neighbourhood_id, COUNT(neighbourhood_id) FROM listings GROUP BY neighbourhood_id
-q2_5_1b;SELECT neighbourhood_id, COUNT(neighbourhood_id) FROM listings GROUP BY neighbourhood_id HAVING COUNT(neighbourhood_id) > 4
-q2_5_2;SELECT neighbourhood FROM neighbourhoods WHERE neighbourhood_id IN (SELECT neighbourhood_id FROM listings GROUP BY neighbourhood_id HAVING COUNT(neighbourhood_id) > 4)
-q2_6_1;SELECT listing, listing_id, host, host_id, CASE WHEN price_in_dollar < 70 THEN 'Affordable' WHEN price_in_dollar > 300 THEN 'Expensive' ELSE 'Mid-range' END price_range FROM listings
-q1_2_8a;SELECT * FROM listings WHERE neighbourhood_id IN (21, 28, 4)
-q1_2_8b;SELECT * FROM listings WHERE neighbourhood_id IN (1, 26 , 37) ORDER BY price_in_dollar
-q1_2_9a;SELECT * FROM calendar WHERE listing_id IN (22296011, 8476652, 28268415, 40426054) 
-q1_2_9b;SELECT * FROM calendar WHERE listing_id IN (658279799851154919, 10549608, 41983356, 44284905, 2033151, 34027782, 46159786, 9376988, 10111788)
-q1_2_10a;SELECT * FROM listings WHERE price_in_dollar >= 400 ORDER BY price_in_dollar
-q1_2_10b;SELECT * FROM listings WHERE neighbourhood_id IN (20, 26) AND price_in_dollar >= 400 ORDER BY price_in_dollar
-q1_2_10c;SELECT * FROM reviews WHERE listing_id IN (21443493, 10729688, 9012529, 46159786, 9376988) ORDER BY listing_id
-q2_7_1a;SELECT * FROM listings WHERE price_in_dollar >= 70 AND price_in_dollar <= 100
-q2_7_1b;SELECT * FROM calendar WHERE listing_id IN (SELECT listing_id FROM listings WHERE price_in_dollar >= 70 AND price_in_dollar <= 100)
-q2_7_1c;SELECT COUNT(available) FROM calendar WHERE listing_id IN (SELECT listing_id FROM listings WHERE price_in_dollar >= 70 AND price_in_dollar <= 100)
-q2_7_1d;SELECT SUM(available) FROM calendar WHERE listing_id IN (SELECT listing_id FROM listings WHERE price_in_dollar >= 70 AND price_in_dollar <= 100)
+q1_1_1;["SELECT * FROM listings"]
+q1_1_2a;["SELECT * FROM neighbourhoods"]
+q1_1_2b;["SELECT * FROM reviews"]
+q1_1_2c;["SELECT * FROM calendar"]
+q1_2_1;["SELECT host_id, host FROM listings"]
+q1_2_2;["SELECT host_id, host FROM listings ORDER BY host_id DESC"]
+q1_2_3;["SELECT host_id, host FROM listings WHERE neighbourhood_id = 35 ORDER BY host_id DESC"]
+q1_2_4;["SELECT host_id, host FROM listings WHERE neighbourhood_id = 27 AND room_type = 'Private room' ORDER BY host_id DESC"]
+q1_2_5;["SELECT * FROM calendar WHERE date BETWEEN '2022-09-09' AND '2022-09-11'"]
+q1_2_6;["SELECT * FROM calendar WHERE listing_id = 7581665 AND date BETWEEN '2022-09-09' AND '2022-09-11'"]
+q1_2_7a;["SELECT * FROM calendar WHERE listing_id = 657377039990074158"]
+q1_2_7b;["SELECT * FROM reviews WHERE listing_id = 657377039990074158"]
+q1_2_7c;["SELECT * FROM listings WHERE listing_id = 657377039990074158"]
+q2_1_1;["SELECT * FROM neighbourhoods"]
+q2_2_1;["SELECT * FROM listings WHERE host LIKE 'Jos%'"]
+q2_2_2a;["SELECT * FROM neighbourhoods WHERE neighbourhood_id = 21"]
+q2_2_2b;["SELECT * FROM calendar WHERE listing_id = 22296011"]
+q2_2_2c;["SELECT * FROM reviews WHERE listing_id = 22296011"]
+q2_3_1a;["SELECT AVG(price_in_dollar) FROM listings"]
+q2_3_1b;["SELECT MAX(price_in_dollar) FROM listings"]
+q2_3_1c;["SELECT MIN(price_in_dollar) FROM listings"]
+q2_4_1;["SELECT neighbourhood_id, COUNT(neighbourhood_id) FROM listings GROUP BY neighbourhood_id"]
+q2_4_2;["SELECT neighbourhood_id, COUNT(neighbourhood_id) FROM listings GROUP BY neighbourhood_id ORDER BY COUNT(neighbourhood_id) DESC"]
+q2_4_3a;["SELECT neighbourhood_id FROM listings"]
+q2_4_3b;["SELECT neighbourhood_id FROM neighbourhoods"]
+q2_4_3c;["SELECT neighbourhood_id FROM neighbourhoods WHERE neighbourhood_id NOT IN (SELECT neighbourhood_id FROM listings)"]
+q2_5_1a;["SELECT neighbourhood_id, COUNT(neighbourhood_id) FROM listings GROUP BY neighbourhood_id"]
+q2_5_1b;["SELECT neighbourhood_id, COUNT(neighbourhood_id) FROM listings GROUP BY neighbourhood_id HAVING COUNT(neighbourhood_id) > 4"]
+q2_5_2;["SELECT neighbourhood FROM neighbourhoods WHERE neighbourhood_id IN (SELECT neighbourhood_id FROM listings GROUP BY neighbourhood_id HAVING COUNT(neighbourhood_id) > 4)"]
+q2_6_1;["SELECT listing, listing_id, host, host_id, CASE WHEN price_in_dollar < 70 THEN 'Affordable' WHEN price_in_dollar > 300 THEN 'Expensive' ELSE 'Mid-range' END price_range FROM listings"]
+q1_2_8a;["SELECT * FROM listings WHERE neighbourhood_id IN (21, 28, 4)"]
+q1_2_8b;["SELECT * FROM listings WHERE neighbourhood_id IN (1, 26 , 37) ORDER BY price_in_dollar"]
+q1_2_9a;["SELECT * FROM calendar WHERE listing_id IN (22296011, 8476652, 28268415, 40426054)"]
+q1_2_9b;["SELECT * FROM calendar WHERE listing_id IN (658279799851154919, 10549608, 41983356, 44284905, 2033151, 34027782, 46159786, 9376988, 10111788)"]
+q1_2_10a;["SELECT * FROM listings WHERE price_in_dollar >= 400 ORDER BY price_in_dollar"]
+q1_2_10b;["SELECT * FROM listings WHERE neighbourhood_id IN (20, 26) AND price_in_dollar >= 400 ORDER BY price_in_dollar"]
+q1_2_10c;["SELECT * FROM reviews WHERE listing_id IN (21443493, 10729688, 9012529, 46159786, 9376988) ORDER BY listing_id"]
+q2_7_1a;["SELECT * FROM listings WHERE price_in_dollar >= 70 AND price_in_dollar <= 100"]
+q2_7_1b;["SELECT * FROM calendar WHERE listing_id IN (SELECT listing_id FROM listings WHERE price_in_dollar >= 70 AND price_in_dollar <= 100)"]
+q2_7_1c;["SELECT COUNT(available) FROM calendar WHERE listing_id IN (SELECT listing_id FROM listings WHERE price_in_dollar >= 70 AND price_in_dollar <= 100)"]
+q2_7_1d;["SELECT SUM(available) FROM calendar WHERE listing_id IN (SELECT listing_id FROM listings WHERE price_in_dollar >= 70 AND price_in_dollar <= 100)"]
