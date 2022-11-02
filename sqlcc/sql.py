@@ -37,37 +37,90 @@ def run(sql_query: str) -> pd.DataFrame:
 def check(**key_user_sql_query):
     print("-------------------")
     sql_solutions = pd.read_csv(StringIO(pkgutil.get_data(
-            __name__, DATA_FOLDER_URL + SOLUTION_CSV).decode("utf-8")), sep=";", header=0)
+        __name__, DATA_FOLDER_URL + SOLUTION_CSV).decode("utf-8")), sep=";", header=0)
     sql_sol_dict = dict(zip(sql_solutions.key, sql_solutions.value))
 
     for key, user_sql_query in key_user_sql_query.items():
-        try: 
+        try:
             if key in sql_sol_dict:
-                sql_sol_df = run(sql_sol_dict[key].lower())
-                current_sql_df = run(user_sql_query.lower())
-                
-                # First check if contains the same columns
-                if sorted(sql_sol_df.columns.tolist()) != sorted(current_sql_df.columns.tolist()):
-                    print("Your SQL query does NOT match our solution. There is a column mismatch:" +
-                          "\n" +
-                          "\nYou have:\t" + str(sorted(current_sql_df.columns.tolist())) + 
-                          "\nExpected:\t" + str(sorted(sql_sol_df.columns.tolist())) +
-                          "\n-------------------")
-                else:
-                    # Ensure the columns of both dataframes are in the same order
-                    sql_sol_df = sql_sol_df[current_sql_df.columns.tolist()]
-                    
-                    if sql_sol_df.equals(current_sql_df):
-                        print("Your SQL query is correct!")
+                # Check if one or many solutions are available
+                # Interpret string as list
+                solution_list = sql_sol_dict[key][1:-
+                                                  1].replace('"', "").split('|')
+                solution_list = [solution.strip()
+                                 for solution in solution_list]
+
+                # There is only one possible solution.
+                if len(solution_list) == 1:
+                    sql_sol_df = run(solution_list[0].lower())
+                    current_sql_df = run(user_sql_query.lower())
+
+                    # First check if contains the same columns
+                    if sorted(sql_sol_df.columns.tolist()) != sorted(current_sql_df.columns.tolist()):
+                        print("Your SQL query does NOT match our solution. There is a column mismatch:" +
+                              "\n" +
+                              "\nYou have:\t" + str(sorted(current_sql_df.columns.tolist())) +
+                              "\nExpected:\t" + str(sorted(sql_sol_df.columns.tolist())) +
+                              "\n-------------------")
                     else:
-                        print("Your SQL query does NOT match our solution. The number of rows is different.")
+                        # Ensure the columns of both dataframes are in the same order
+                        sql_sol_df = sql_sol_df[current_sql_df.columns.tolist(
+                        )]
+
+                        if sql_sol_df.equals(current_sql_df):
+                            print("Your SQL query is correct!")
+                        else:
+                            print(
+                                "Your SQL query does NOT match our solution. The number of rows is different.")
+
+                # There are more than one possible solution available.
+                else:
+                    # String which is only printed if none of solutions match
+                    output_log = ("There are " +
+                                  str(len(solution_list)) +
+                                  " possible solutions for this SQL query. Your different in:")
+                    state = 0
+
+                    for ix, solution in enumerate(solution_list):
+                        sql_sol_df = run(solution.lower())
+                        current_sql_df = run(user_sql_query.lower())
+
+                        # First check if contains the same columns
+                        if sorted(sql_sol_df.columns.tolist()) != sorted(current_sql_df.columns.tolist()):
+                            temp_log = ("\n\n> Solution " + str(ix + 1) +
+                                        ": Your SQL query differs from this solution due to a column mismatch:" +
+                                        "\n" +
+                                        "\nYou have:\t" + str(sorted(current_sql_df.columns.tolist())) +
+                                        "\nExpected:\t" + str(sorted(sql_sol_df.columns.tolist())))
+                            output_log = "".join((output_log, temp_log))
+
+                        else:
+                            # Ensure the columns of both dataframes are in the same order
+                            sql_sol_df = sql_sol_df[current_sql_df.columns.tolist(
+                            )]
+
+                            # Make sure to output the right log
+                            if sql_sol_df.equals(current_sql_df):
+                                state = 1
+                            else:
+                                state = 1 if state == 1 else 2
+
+                    if state == 1:
+                        print("Your SQL query is correct!")
+                    elif state == 2:
+                        print(
+                            "Your SQL query does NOT match our solution. The number of rows is different.")
+                    else:
+                        print(output_log)
+                print("\n-------------------")
+
             else:
                 raise QuestionKeyUnknown
         except QuestionKeyUnknown:
             print("The variable name used for the parameter" +
-                  " in the check function does not match" + 
+                  " in the check function does not match" +
                   " any of our solution keys.")
-            
+
 
 class QuestionKeyUnknown(Exception):
     """
