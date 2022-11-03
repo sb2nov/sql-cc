@@ -39,4 +39,4 @@ q1_2_10c;["SELECT * FROM reviews WHERE listing_id IN (21443493, 10729688, 901252
 q2_7_1a;["SELECT * FROM listings WHERE price_in_dollar >= 70 AND price_in_dollar <= 100"]
 q2_7_1b;["SELECT * FROM calendar WHERE listing_id IN (SELECT listing_id FROM listings WHERE price_in_dollar >= 70 AND price_in_dollar <= 100)"]
 q2_7_1c;["SELECT COUNT(available) FROM calendar WHERE listing_id IN (SELECT listing_id FROM listings WHERE price_in_dollar >= 70 AND price_in_dollar <= 100)" | "SELECT COUNT(*) FROM calendar WHERE listing_id IN (SELECT listing_id FROM listings WHERE price_in_dollar >= 70 AND price_in_dollar <= 100)"]
-q2_7_1d;["SELECT SUM(available) FROM calendar WHERE listing_id IN (SELECT listing_id FROM listings WHERE price_in_dollar >= 70 AND price_in_dollar <= 100)" | "SELECT SUM(*) FROM calendar WHERE listing_id IN (SELECT listing_id FROM listings WHERE price_in_dollar >= 70 AND price_in_dollar <= 100)"]
+q2_7_1d;["SELECT SUM(available) FROM calendar WHERE listing_id IN (SELECT listing_id FROM listings WHERE price_in_dollar >= 70 AND price_in_dollar <= 100)"]
