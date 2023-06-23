@@ -25,7 +25,7 @@ q2_4_2;["SELECT neighbourhood_id, COUNT(neighbourhood_id) FROM listings GROUP BY
 q2_4_3a;["SELECT neighbourhood_id FROM listings"]
 q2_4_3b;["SELECT neighbourhood_id FROM neighbourhoods"]
 q2_4_3c;["SELECT neighbourhood_id FROM neighbourhoods WHERE neighbourhood_id NOT IN (SELECT neighbourhood_id FROM listings)"]
-q2_5_1a;["SELECT neighbourhood_id, COUNT(neighbourhood_id) FROM listings GROUP BY neighbourhood_id" | "SELECT neighbourhood_id, COUNT(*) FROM listings GROUP BY neighbourhood_id"]
+q2_5_1a;["SELECT neighbourhood_id, COUNT(neighbourhood_id) FROM listings GROUP BY neighbourhood_id" | "SELECT neighbourhood_id, COUNT(*) FROM listings GROUP BY neighbourhood_id" | "SELECT neighbourhood_id, COUNT(listing_id) FROM listings GROUP BY neighbourhood_id"]
 q2_5_1b;["SELECT neighbourhood_id, COUNT(neighbourhood_id) FROM listings GROUP BY neighbourhood_id HAVING COUNT(neighbourhood_id) > 4" | "SELECT neighbourhood_id, COUNT(*) FROM listings GROUP BY neighbourhood_id HAVING COUNT(neighbourhood_id) > 4" | "SELECT neighbourhood_id, COUNT(neighbourhood_id) FROM listings GROUP BY neighbourhood_id HAVING COUNT(*) > 4" | "SELECT neighbourhood_id, COUNT(*) FROM listings GROUP BY neighbourhood_id HAVING COUNT(*) > 4"]
 q2_5_2;["SELECT neighbourhood FROM neighbourhoods WHERE neighbourhood_id IN (SELECT neighbourhood_id FROM listings GROUP BY neighbourhood_id HAVING COUNT(neighbourhood_id) > 4)" | "SELECT neighbourhood FROM neighbourhoods WHERE neighbourhood_id IN (SELECT neighbourhood_id FROM listings GROUP BY neighbourhood_id HAVING COUNT(*) > 4)"]
 q2_6_1;["SELECT listing, listing_id, host, host_id, CASE WHEN price_in_dollar < 70 THEN 'Affordable' WHEN price_in_dollar > 300 THEN 'Expensive' ELSE 'Mid-range' END price_range FROM listings"]
