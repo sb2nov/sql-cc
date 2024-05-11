@@ -6,7 +6,7 @@ CREATE TABLE neighbourhoods
 
 CREATE TABLE listings
   (
-     listing_id       INTEGER NOT NULL,
+     listing_id       TEXT NOT NULL,
      listing          TEXT NOT NULL,
      host_id          INTEGER NOT NULL CONSTRAINT listings_pk UNIQUE,
      host             TEXT,
@@ -18,7 +18,7 @@ CREATE TABLE listings
 
 CREATE TABLE calendar
   (
-     listing_id      INTEGER NOT NULL CONSTRAINT calendar_listings_null_fk
+     listing_id      TEXT NOT NULL CONSTRAINT calendar_listings_null_fk
      REFERENCES
      listings (listing_id)
      ON UPDATE CASCADE ON DELETE CASCADE,
@@ -31,7 +31,7 @@ CREATE TABLE calendar
 
 CREATE TABLE reviews
   (
-     listing_id  INTEGER NOT NULL CONSTRAINT reviews_listings_null_fk REFERENCES
+     listing_id  TEXT NOT NULL CONSTRAINT reviews_listings_null_fk REFERENCES
      listings (listing_id)
      ON UPDATE CASCADE ON DELETE CASCADE,
      review_id   INTEGER NOT NULL CONSTRAINT reviews_pk PRIMARY KEY,
